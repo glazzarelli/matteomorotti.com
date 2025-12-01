@@ -1,4 +1,10 @@
-# Weekly Macro Update Automation — One-Pager
+---
+title: 'Weekly Macro Update Automation — Economic Indicators'
+description: 'Python automation scraping macroeconomic indicators from free public sources for consistent weekly internal macro reporting.'
+pubDate: '2025'
+category: 'Automation'
+tags: ['python', 'web-scraping', 'selenium', 'finance', 'automation']
+---
 
 ## General Info  
 

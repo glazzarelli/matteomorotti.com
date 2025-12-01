@@ -1,5 +1,10 @@
-
-# Monthly Portfolio Snapshot Automation — UBS PDF Statements
+---
+title: 'Monthly Portfolio Snapshot Automation — UBS PDF Statements'
+description: 'Python workflow parsing UBS account statements to reconstruct end-of-month portfolios and generate pre-filled client emails with portfolio metrics.'
+pubDate: '2024'
+category: 'Automation'
+tags: ['python', 'pdf-parsing', 'finance', 'automation', 'email']
+---
 
 ## General Info  
 

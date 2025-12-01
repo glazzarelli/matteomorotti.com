@@ -1,3 +1,11 @@
+---
+title: 'Portfolio Consolidation & Bond Analysis Automation'
+description: 'Automated Python workflow consolidating multi-bank holdings with structured fixed-income and equity analysis, delivering faster monthly reporting with improved accuracy.'
+pubDate: '2024'
+category: 'Automation'
+tags: ['python', 'finance', 'automation', 'pandas', 'excel']
+---
+
 ## General Info  
 
 **Year:** 2024

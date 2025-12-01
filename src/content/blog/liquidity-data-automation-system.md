@@ -1,3 +1,11 @@
+---
+title: 'Real-Time Liquidity Consolidation System'
+description: 'Python automation centralizing multi-bank cash balances with pending trade adjustments and unified liquidity reporting for accurate portfolio decisions.'
+pubDate: '2025'
+category: 'Automation'
+tags: ['python', 'finance', 'liquidity', 'automation', 'pandas']
+---
+
 ## General Info  
 
 **Year:** 2025  

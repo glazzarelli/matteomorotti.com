@@ -1,9 +1,15 @@
+---
+title: 'Structured Products Database Integration System'
+description: 'Consolidated dataset integrating client structured-product transactions with full product attributes for monitoring call events and exposure analysis.'
+pubDate: '2025'
+category: 'Automation'
+tags: ['python', 'finance', 'database', 'automation', 'structured-products']
+---
 
 ## General Info
 
 **Year:** 2025  
-**Role:** Junior Portfolio Manager  
- 
+**Role:** Junior Portfolio Manager
 
 **Abstract**
 The automation produces a single consolidated dataset that integrates all client structured-product transactions, combining trade amounts and product identifiers with full product attributes such as issuer, underlying, maturity, and observation dates. This unified view enables clear monitoring of potential call events and more accurate analysis of exposures across issuers, underlyings, and clients.
