@@ -1,429 +1,294 @@
-# Astro + Starwind UI Blog Template
+![Showcase Card](/public/static/twitter-card.png)
 
-<img width="1536" height="1024" alt="free-astro-theme" src="https://github.com/user-attachments/assets/0419a038-def9-4e88-916d-23add03ce366" />
+<div align="center">
 
-Production-ready Astro blog using Tailwind CSS v4 and Starwind UI patterns, with a full theming system via CSS variables and reusable `.astro` components.
+## astro-erudite
 
-Demo at https://free-astro-template.netlify.app/
+![Stargazers]
+[![License]](LICENSE)
 
-## ✨ Features
+</div>
 
-- ✅ Astro SSG with fast dev experience
-- ✅ Tailwind CSS v4 + Starwind UI patterns and theming
-- ✅ Dark theme via CSS variables (`.dark` / `[data-theme="dark"]`)
-- ✅ Centralized data in TypeScript (`skills`, `work`, `studies`, `projects`, `logos`)
-- ✅ Reusable UI components (Badge, Button, Timeline, Carousel, Separators)
-- ✅ Organized sections (Header, Hero, Skills, Work Experience, Studies, Footer)
-- ✅ Blog with Markdown & MDX content collections
-- ✅ SEO: canonical URLs, OpenGraph, sitemap, RSS feed, sharing icons, etc
-- ✅ Accessibility-oriented tokens (contrast-ready) and card surface utilities
+astro-erudite is an opinionated, unstyled static blogging template built with [Astro](https://astro.build/), [Tailwind](https://tailwindcss.com/), and [shadcn/ui](https://ui.shadcn.com/). Extraordinarily loosely based off the [Astro Micro](https://astro-micro.vercel.app/) theme by [trevortylerlee](https://github.com/trevortylerlee).
 
-<img width="941" height="519" alt="image" src="https://github.com/user-attachments/assets/e88187b8-6ed1-459e-bb81-61b64e06ee2a" />
+| ![Preview 1](/public/static/preview-1.png) | ![Preview 2](/public/static/preview-2.png) |
+| ------------------------------------------ | ------------------------------------------ |
+| ![Preview 3](/public/static/preview-3.png) | ![Preview 4](/public/static/preview-4.png) |
 
-## 🔧 Requirements
-
-- Node.js 18+ (or 20+ recommended)
-- npm (or pnpm/yarn)
-
-## 🚀 Quick Start
-
-```bash
-# 1) Install deps
-npm install
-
-# 2) Start dev server
-npm run dev
-# open http://localhost:4321
-```
-
-Build and preview:
-
-```bash
-npm run build
-npm run preview
-```
-
-## 📁 Project Structure
-
-```text
-free-astro-template/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── assets/
-│   │   ├── icons/               # Inline icons for UI (e.g., timeline)
-│   │   ├── images/              # JPG/PNG hero/blog images
-│   │   └── logos/               # Brand logos used by Carousel & projects
-│   ├── components/
-│   │   ├── sections/            # Page sections
-│   │   │   ├── Header.astro
-│   │   │   ├── Footer.astro
-│   │   │   ├── HeroSection.astro
-│   │   │   ├── SkillsSection.astro
-│   │   │   ├── WorkExperience.astro
-│   │   │   └── Studies.astro
-│   │   └── ui/                  # Reusable UI components
-│   │       ├── badge/Badge.astro
-│   │       ├── button/Button.astro
-│   │       ├── card/            # Card variants (e.g., PostCard)
-│   │       ├── carousel/Carousel.astro
-│   │       ├── separator/
-│   │       │   ├── ArrowSeparator.astro
-│   │       │   └── GlowLineSeparator.astro
-│   │       └── timeline/Timeline.astro
-│   ├── content/
-│   │   └── blog/                # Markdown & MDX posts
-│   ├── data/                    # All structured data for sections/UI
-│   │   ├── skills.ts
-│   │   ├── work.ts
-│   │   ├── studies.ts
-│   │   ├── projects.ts
-│   │   └── logos.ts             # Globs SVG logos and normalizes names
-│   ├── layouts/
-│   │   └── BlogPost.astro
-│   ├── lib/
-│   │   └── svg.ts               # sanitizeToOutline(svg, size)
-│   ├── pages/
-│   │   ├── index.astro
-│   │   ├── about.astro
-│   │   ├── portfolio.astro
-│   │   ├── demo.astro  # Component showcase
-│   │   └── blog/[...slug].astro
-│   └── styles/
-│       ├── global.css           # Imports base styles in correct order
-│       ├── starwind.css         # Tailwind + Starwind base & layer order
-│       ├── tokens.css           # Light tokens & Starwind variable mapping
-│       ├── themes/dark.css      # Dark theme overrides
-│       └── utilities.css        # Project utilities, effects, animations
-├── astro.config.mjs
-├── starwind.config.json
-├── tsconfig.json
-└── package.json
-```
-
-## 🧩 Components & Sections
-
-- Header: favicon brand mark, left‑aligned nav, social icons with hover color.
-- HeroSection: primary CTAs via shared `Button` component.
-- SkillsSection: pulls data from `src/data/skills.ts`; icon hover effects.
-- WorkExperience: uses `Timeline.astro`, icons sanitized via `lib/svg.ts`.
-- Studies: simple list of studies from `src/data/studies.ts`.
-- UI components: `Badge`, `Button`, `Timeline`, `Carousel`, `ArrowSeparator`, `GlowLineSeparator`.
-
-Note: Keep components free of scoped CSS whenever possible. Prefer utilities in `styles/utilities.css` and design tokens in `styles/tokens.css` and `styles/themes/dark.css`.
-
-## 🎨 Theming & Styles
-
-This template uses Starwind UI’s theming patterns with Tailwind v4:
-
-- `src/styles/starwind.css`: imports Tailwind and Starwind base layers.
-- `src/styles/tokens.css`: base light tokens and maps to Starwind variables.
-- `src/styles/themes/dark.css`: dark mode overrides (backgrounds, text, shadows, semantic colors).
-- `src/styles/utilities.css`: project‑specific utilities and effects, including:
-  - `.card-surface` surface style (translucent background, radius, shadow, backdrop-filter)
-  - Carousel animation (`@keyframes carousel-scroll`, `.animate-carousel`)
-  - Separator effects (arrow and glow line)
-
-Dark mode is enabled by applying `.dark` or `[data-theme="dark"]` on a root element. The home page defaults to dark. To customize:
-
-1) Edit tokens in `styles/tokens.css` (light theme base).
-2) Refine dark theme overrides in `styles/themes/dark.css` (e.g., `--background`, `--card`, shadows, semantic colors).
-3) Prefer adjusting `.card-surface` and utilities in `styles/utilities.css` instead of component‑scoped styles.
-
-Accessibility: If Lighthouse flags contrast, slightly increase background luminance and/or raise text contrast by tweaking tokens in `dark.css` (e.g., `--background`, `--card`, and text color variables).
-
-## 🗂️ Editing Content
-
-- Blog posts: add Markdown or MDX files under `src/content/blog/`.
-- Skills: edit `src/data/skills.ts` (icon, title, description). Inline SVGs are supported.
-- Work experience: edit `src/data/work.ts` (title, company, region, description, technologies).
-- Studies: edit `src/data/studies.ts`.
-- Projects: edit `src/data/projects.ts` (icon, title, stack, description, link).
-- Logos for carousel: drop SVGs into `src/assets/logos/`. They’re collected and normalized by `src/data/logos.ts` using `import.meta.glob` (configured for Vite v5 with `{ query: '?url', import: 'default', eager: true }`). Names like "Something-logo.svg" are normalized by removing the "logo" suffix and title-casing automatically.
-
-## 🧠 SVG Handling
-
-- Use `lib/svg.ts` → `sanitizeToOutline(svg: string, size: number)` to normalize inline SVGs (removes XML/comments, forces `fill="none"`, `stroke="currentColor"`, and applies width/height). This keeps timeline icons crisp and themable.
-
-## 🖱️ Carousel Usage
-
-- Component: `src/components/ui/carousel/Carousel.astro`
-- Data: `src/data/logos.ts`
-- Props:
-  - `tools`: array of normalized logos from `logos.ts`
-  - `speedMs` (optional): lower value → faster scroll. Increase to slow down.
-- Behavior: logos render as white by default; on hover, they reveal their original colors.
-
-## 📌 Adding logos to the carousel
-
-- Drop SVGs in `src/assets/logos/` and they’ll be auto‑globbed by `src/data/logos.ts`. Names are normalized (removes `-logo`, title‑cases, etc.).
-
-## 🧰 Cards & Surfaces
-
-- Use the `.card-surface` utility for consistent cards:
-  - dark, translucent background via `--card`
-  - no border; rely on shadows for depth
-  - heavier base shadow in dark mode; lighter on hover with accent glow
-- Tweak in `styles/utilities.css` and `styles/themes/dark.css`.
-
-## 🔗 Header & Footer
-
-- Header nav is left‑aligned; social icons use group hover to change icon color on hover.
-- Footer includes a CTA with a primary button.
-
-## 🧞 Commands (Astro)
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Install dependencies                             |
-| `npm run dev`             | Start dev server at `http://localhost:4321`      |
-| `npm run build`           | Build production site to `./dist/`               |
-| `npm run preview`         | Preview your build locally                       |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## ✅ Best Practices
-
-- Keep `.astro` files free of component‑scoped CSS unless absolutely necessary.
-- Centralize design decisions in `tokens.css`, `themes/dark.css`, and `utilities.css`.
-- Prefer data‑driven components: move content into `src/data/` and import into sections.
-- Use inline SVGs for icons when you need themable stroke/fill control; otherwise reference static assets from `src/assets/`.
-
-## 🛰️ Demo Page
-
-Visit `/demo` to see the themed Starwind UI components (Badge, Button, Timeline, Carousel) with this template’s styling.
+> [!NOTE]
+> To learn more about why this template exists, read [The State of Static Blogs in 2024](https://astro-erudite.vercel.app/blog/the-state-of-static-blogs), where I share my take on what constitutes a great blogging template and my goals while developing this one.
 
 ---
 
-Docs: [Astro Docs](https://docs.astro.build) • [Starwind UI](https://starwind.dev)
+## Community examples
 
-## 🧭 What’s Included (quick reference)
+Below are some fantastic examples of websites based on this template. If you wish to add your site to this list, open a [pull request](https://github.com/jktrn/astro-erudite/pulls)!
 
-- Blog content collections (Markdown + MDX) with author, tags, and category taxonomy
-- Author pages (slugified), Tag pages, Category pages
-- Reading time estimation for cards and posts
-- Share buttons (X, HN, LinkedIn, Reddit)
-- Previous/Next post navigation
-- RSS feeds: global, per‑tag, per‑category (+ autodiscovery `<link>` on pages)
-- SEO: canonical URLs, Open Graph + Twitter cards, JSON‑LD (Article, Breadcrumbs, Organization), sitemap
-- Robots: `public/robots.txt`
-- Dark‑mode friendly Markdown defaults (tables, lists, code, blockquotes)
+| Site | Author | Tags | Source |
+|-|-|-|-|
+| [enscribe.dev](https://enscribe.dev) | [@jktrn](https://github.com/jktrn) | portfolio, interactive | [→](https://github.com/jktrn/enscribe.dev) |
+| [emile.sh](https://emile.sh) | [@echoghi](https://github.com/echoghi) | minimal, flexoki | [→](https://github.com/echoghi/v5) |
+| [decentparadox.me](https://decentparadox.me) | [@decentparadox](https://github.com/decentparadox) | portfolio, sci-fi | [→](https://github.com/decentparadox/decentparadox.me) |
+| [flocto.github.io](https://flocto.github.io/) | [@flocto](https://github.com/flocto) | blog | [→](https://github.com/flocto/flocto.github.io) |
+| [dumbprism.me](https://www.dumbprism.me/) | [@dumbprism](https://github.com/dumbprism) | portfolio, bento | [→](https://github.com/dumbprism/dumbprism-portfolio) |
+| [hyuki.dev](https://hyuki.dev/) | [@snow0406](https://github.com/snow0406) | minimal, blog | [→](https://github.com/Snow0406/hyuki.dev) |
+| [ldd.cc](https://ldd.cc/) | [@xJoyLu](https://github.com/xjoylu) | blog | [→](https://ldd.cc/) |
+| [rezarezvan.com](https://rezarezvan.com/) | [@rezaarezvan](https://github.com/rezaarezvan) | academic, blog | [→](https://rezarezvan.com/) |
+| [blog.z0x.ca](https://blog.z0x.ca/) | [@z0x](https://z0x.ca) | minimal | [→](https://git.z0x.ca/z0x/blog.z0x.ca/) |
+| [angelaytchan.net](https://angelaytchan.net/) | [@wispyplant](https://github.com/wispyplant) | portfolio, art | [→](https://github.com/wispyplant/wispyplant.github.io) |
+| [kaezr.xyz](https://kaezr.xyz/) | [@kaezrr](https://github.com/kaezrr) | minimal, portfolio | [→](https://github.com/kaezrr/webfolio) |
+| [worldwidewong](https://worldwidewong.vercel.app) | [@brendanwong-web](https://github.com/brendanwong-web) | portfolio, gallery | [→](https://github.com/brendanwong-web/worldwidewong) |
+| [bgajjala.dev](https://bgajjala.dev) | [@bgajjala8](https://github.com/bgajjala8) | minimal, blog | [→](https://github.com/bgajjala8/bgajjala.dev) |
+| [ankitz007.vercel.app](https://ankitz007.vercel.app) | [@ankitz007](https://github.com/ankitz007) | blog | [→](https://github.com/ankitz007/webfolio) |
+| [sadman.ca](https://sadman.ca) | [@sadmanca](https://github.com/sadmanca) | blog, media | [→](https://github.com/sadmanca/blogv3) |
+| [marcel-to.vercel.app](https://marcel-to.vercel.app) | [@Marcel-TO](https://github.com/Marcel-TO) | portfolio, docs | [→](https://github.com/Marcel-TO/marcel-to-website) |
+| [merox.dev](https://merox.dev) | [@meroxdotdev](https://github.com/meroxdotdev) | blog, devops, homelab | [→](https://github.com/meroxdotdev/merox) |
+| [Off by One](https://justoffbyone.com) | [@cduruk](https://github.com/cduruk) | engineering, blog | [→](https://github.com/cduruk/offbyone) |
 
-## 🧱 Content Model (frontmatter)
+## Features
 
-Each blog post (`src/content/blog/*.md|mdx`) supports the following frontmatter keys:
+- [Astro](https://astro.build/)'s [Islands](https://docs.astro.build/en/concepts/islands/) architecture for selective hydration and client-side interactivity while maintaining fast static site rendering.
+- [shadcn/ui](https://ui.shadcn.com/) with [Tailwind](https://tailwindcss.com/) color conventions for automatic light and dark theme styling. Features accessible, theme-aware UI components for navigation, buttons, and more.
+- [Expressive Code](https://expressive-code.com/) for enhanced code block styling, syntax highlighting, and code block titles.
+- Blog authoring with [MDX](https://mdxjs.com/) for component-rich content and $\LaTeX$ math rendering via [KaTeX](https://katex.org/).
+- Astro [View Transitions](https://docs.astro.build/en/guides/view-transitions/) in <abbr title="Single Page Application">SPA</abbr> mode for smooth route animations.
+- SEO optimization with granular metadata and [Open Graph](https://ogp.me/) tag control for each post.
+- [RSS](https://en.wikipedia.org/wiki/RSS) feed and sitemap generation.
+- Subpost support for breaking long content into digestible parts and organizing related series.
+- Author profiles with a dedicated authors page and multi-author post support.
+- Project tags with a dedicated tags page for post categorization and discovery.
+- Custom Callout component variants for enhanced technical writing.
 
-```yaml
----
-title: "Your post title"
-description: "Short summary for cards and meta"
-pubDate: 2025-06-19
-updatedDate: 2024-07-02 # optional
-heroImage: ../../assets/images/your-image.jpg # optional
-tags: [astro, ui] # optional, many-to-many labels
-category: Growth # optional, 1 broad bucket per post recommended
-author: Site Author # optional; defaults to site author
----
-```
+### Technology stack
 
-Notes:
-- Author pages use a slugified version of the author name (e.g., `site-author`).
-- Tag pages use slugified tag names (e.g., `astro`).
-- Category pages use slugified category names (e.g., `growth`).
+This is a list of the various technologies used to build this template:
 
-## 🔖 Routes & URLs
+| Category   | Technology Name                                                                            |
+| ---------- | ------------------------------------------------------------------------------------------ |
+| Framework  | [Astro](https://astro.build/)                                                              |
+| Styling    | [Tailwind](https://tailwindcss.com)                                                        |
+| Components | [shadcn/ui](https://ui.shadcn.com/)                                                        |
+| Content    | [MDX](https://mdxjs.com/)                                                                  |
+| Codeblocks | [Expressive Code](https://expressive-code.com/), [Shiki](https://github.com/shikijs/shiki) |
+| Graphics   | [Figma](https://www.figma.com/)                                                            |
+| Deployment | [Vercel](https://vercel.com)                                                               |
 
-- Posts: `/blog/<slug>/`
-- Author: `/blog/author/<author-slug>/`
-- Tag: `/blog/tag/<tag-slug>/`
-- Category: `/blog/category/<category-slug>/`
+## Getting started
 
-## 📡 Feeds (RSS)
+1. Hit &ldquo;Use this template&rdquo;, the big green button on the top right, to create a new repository in your own GitHub account with this template.
 
-- Global: `/rss.xml`
-- By tag: `/rss/tag/<tag-slug>.xml`
-- By category: `/rss/category/<category-slug>.xml`
+2. Clone the repository:
 
-Tip: Feed readers can auto‑discover tag/category feeds via the `<link rel="alternate" type="application/rss+xml">` tags we include on those pages. The footer also provides quick links for Feedly/Inoreader and a “Copy RSS link” action.
+   ```bash
+   git clone https://github.com/[YOUR_USERNAME]/[YOUR_REPO_NAME].git
+   cd [YOUR_REPO_NAME]
+   ```
 
-## 🔎 SEO details
+3. Install dependencies:
 
-- `src/components/BaseHead.astro`: common head tags (canonical, OG/Twitter, robots, theme‑color, RSS link). Images and URLs are absolute to `Astro.site`.
-- `src/layouts/BlogPost.astro`: Article OG metas, JSON‑LD (Article + BreadcrumbList).
-- Blog index and pagination pages include `<link rel="prev/next">`.
-- Sitemap via `@astrojs/sitemap` is emitted at build; `public/robots.txt` points to it.
+   ```bash
+   npm install
+   ```
 
-## ✍️ Markdown UX
+4. Start the development server:
 
-- Enhanced defaults for tables and lists live in `src/styles/utilities.css` under the `.prose` scope.
-- Tables: rounded borders, zebra stripes, responsive overflow; Lists: restored bullets/numbering with proper indentation.
+   ```bash
+   npm run dev
+   ```
 
-## ⏱️ Reading Time
+5. Open your browser and visit `http://localhost:1234` to get started. The following commands are also available:
 
-- Cards estimate from Markdown using `calculateReadingTimeFromMarkdown()` (`src/lib/reading.ts`).
-- Post pages estimate from rendered HTML using `calculateReadingTimeFromHtml()`.
-- Default speed is 200 WPM; tweak by changing the optional parameter in these helpers if you prefer another baseline.
+   | Command            | Description                                                     |
+   | ------------------ | --------------------------------------------------------------- |
+   | `npm run start`    | Alias for `npm run dev`                                         |
+   | `npm run build`    | Run type checking and build the project                         |
+   | `npm run preview`  | Previews the built project                                      |
+   | `npm run astro`    | Run Astro CLI commands                                          |
+   | `npm run prettier` | Blanket format all files using [Prettier](https://prettier.io/) |
 
-## 🧩 Customizing Taxonomy
+### Site configuration
 
-- Tag SEO titles/descriptions: edit `src/data/tags.ts` (`getTagMeta`).
-- Category SEO titles/descriptions: edit `src/data/categories.ts` (`getCategoryMeta`).
+Edit the `src/consts.ts` file to update your site's metadata, navigation links, and social links:
 
-## 🚀 Deploy
-
-- Static output in `dist/`. Any static host works (Vercel, Netlify, Cloudflare Pages, GitHub Pages).
-- Ensure `site` is set in `astro.config.mjs` for correct absolute URLs in feeds and metadata.
-
-## 🚀 GitHub Pages (deploy)
-
-Deploy to GitHub Pages with one workflow.
-
-1) Configure site and base in `astro.config.mjs` (critical)
-
-```js
-// astro.config.mjs
-import { defineConfig } from 'astro/config';
-
-export default defineConfig({
-  // User/Org Pages (https://<user>.github.io):
-  //   site: 'https://<user>.github.io',
-  //   base: '/'
-  // Project Pages (https://<user>.github.io/<repo>/):
-  //   site: 'https://<user>.github.io/<repo>/',
-  //   base: '/<repo>/'
-  site: 'https://your-user.github.io',
-  base: '/',
-});
-```
-
-2) Enable GitHub Pages in your repo
-- Settings → Pages → Build and deployment → Source: GitHub Actions
-
-3) Add the workflow (ready to copy)
-
-Create `.github/workflows/deploy.yml` with:
-
-```yaml
-name: Deploy Astro to GitHub Pages
-
-on:
-  push:
-    branches: [ main ]
-  workflow_dispatch:
-
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: "pages"
-  cancel-in-progress: true
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: 'npm'
-
-      - name: Install deps
-        run: npm ci
-
-      - name: Build
-        run: npm run build
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./dist
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
-```
-
-4) Commit and push to `main`
-- First run may take a minute. Check Actions tab for logs and the Pages URL.
-
-Troubleshooting
-- CSS/assets 404 on project pages → `base` is missing or wrong. Set `base: '/<repo>/'` and rebuild.
-- Wrong canonical URLs/RSS → `site` incorrect. Use your real Pages URL (or your custom domain if you set one).
-- Custom domain (CNAME) → Set `site: 'https://example.com'` and keep `base: '/'`.
-
-## ⚙️ Configuration (do this first)
-
-1) Set your canonical site URL in `astro.config.mjs`:
-```js
-// astro.config.mjs
-export default defineConfig({
-  site: 'https://your-domain.com',
-  // ...
-})
-```
-
-2) Update global meta in `src/consts.ts`:
 ```ts
-export const SITE_TITLE = 'Your Site Title';
-export const SITE_DESCRIPTION = 'Short description for social/meta.';
+export const SITE: Site = {
+  title: 'astro-erudite',
+  description: // ...
+  href: 'https://astro-erudite.vercel.app',
+  featuredPostCount: 2,
+  postsPerPage: 3,
+}
+
+export const NAV_LINKS: SocialLink[] = [
+  {
+    href: '/blog',
+    label: 'blog',
+  },
+  // ...
+]
+
+export const SOCIAL_LINKS: SocialLink[] = [
+  {
+    href: 'https://github.com/jktrn',
+    label: 'GitHub',
+  },
+  // ...
+]
 ```
 
-3) Author profile in `src/data/author.ts` (name, avatar, social URLs).
+### Color palette
 
-4) Replace favicon/app icons in `public/` (keep file names the same).
+Colors are defined in `src/styles/global.css` in [OKLCH format](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/oklch), using the [shadcn/ui](https://ui.shadcn.com/) convention:
 
-5) Optional: Customize theme tokens in `src/styles/tokens.css` and dark overrides in `src/styles/themes/dark.css`.
+```css
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+}
 
-## 🧪 Optional: Analytics
-
-This template ships without analytics by default. To add GA4 later, place the GA snippet in `src/components/BaseHead.astro` and (optionally) guard it with `import.meta.env.PROD`.
-
-## 🔧 Toggling features
-
-- Categories: frontmatter supports a single `category`. To disable category pages entirely, remove `src/pages/blog/category/[category].astro` and the category RSS route; posts will continue to work with tags.
-- Per-tag/category RSS: remove the routes under `src/pages/rss/tag/` and `src/pages/rss/category/` if you only want a global feed.
-
-## 🧰 Netlify (example)
-
-If you deploy to Netlify, use:
-```toml
-# netlify.toml
-[build]
-  command = "npm run build"
-  publish = "dist"
-
-[[redirects]]
-  from = "/*"
-  to = "/404.html"
-  status = 404
+[data-theme='dark'] {
+  /* ... */
+}
 ```
 
-## ✅ Launch checklist
+### Favicons
 
-- [ ] `astro.config.mjs` site URL set
-- [ ] `SITE_TITLE` / `SITE_DESCRIPTION` updated
-- [ ] Author data and avatar set
-- [ ] Favicons/app icons replaced in `public/`
-- [ ] Social share image (fallback) looks good
-- [ ] Lighthouse pass (SEO + Accessibility)
-- [ ] Deploy (Netlify/Vercel/etc.) and verify `/rss.xml` and `/sitemap-index.xml`
+Favicons are generated using [RealFaviconGenerator](https://realfavicongenerator.net/). To adjust the favicons, replace the files in the `public/` directory (such as `favicon.ico`, `favicon.svg`, `apple-touch-icon.png`, etc.) with your own. After updating the favicon files, you'll also need to adjust the references in `src/components/Favicons.astro` to match your new favicon filenames and paths:
 
-## 📄 License
+```html
+<!-- Replace these with the generated meta tags -->
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content="astro-erudite" />
+<link rel="manifest" href="/site.webmanifest" />
+```
 
-MIT — you’re free to use, modify, and redistribute. See `LICENSE` for details.
+## Adding content
 
-Check my site live at 'https://guihubie.com'
+### Blog posts
 
+Add new blog posts as MDX files in the `src/content/blog/` directory. Use the following frontmatter structure:
+
+```yml
+---
+title: 'Your Post Title'
+description: 'A brief description of your post!'
+date: 2024-01-01
+tags: ['tag1', 'tag2']
+image: './image.png'
+authors: ['author1', 'author2']
+draft: false
+---
+```
+
+The blog post schema is defined as follows:
+
+| Field         | Type (Zod)      | Requirements                                                                                                                                                                    | Required |
+| ------------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| `title`       | `string`        | Should be ≤60 characters.                                                                                                                                                       | Yes      |
+| `description` | `string`        | Should be ≤155 characters.                                                                                                                                                      | Yes      |
+| `date`        | `coerce.date()` | Must be in `YYYY-MM-DD` format.                                                                                                                                                 | Yes      |
+| `order`       | `number`        | Sort order for subposts with the same `date`. Defaults to `0` if not provided.                                                                                                  | Optional |
+| `image`       | `image()`       | Should be exactly 1200px &times; 630px.                                                                                                                                         | Optional |
+| `tags`        | `string[]`      | Preferably use kebab-case for these.                                                                                                                                            | Optional |
+| `authors`     | `string[]`      | If the author has a profile, use the id associated with their Markdown file in `src/content/authors/` (e.g. if their file is named `jane-doe.md`, use `jane-doe` in the array). | Optional |
+| `draft`       | `boolean`       | Defaults to `false` if not provided.                                                                                                                                            | Optional |
+
+### Authors
+
+Add author information in `src/content/authors/` as Markdown files. A file named `[author-name].md` can be associated with a blog post if `"author-name"` (the id) is added to the `authors` field:
+
+```yml
+---
+name: 'enscribe'
+pronouns: 'he/him'
+avatar: 'https://gravatar.com/avatar/9bfdc4ec972793cf05cb91efce5f4aaaec2a0da1bf4ec34dad0913f1d845faf6.webp?size=256'
+bio: 'd(-_-)b'
+website: 'https://enscribe.dev'
+twitter: 'https://twitter.com/enscry'
+github: 'https://github.com/jktrn'
+mail: 'jason@enscribe.dev'
+---
+```
+
+The author schema is defined as follows:
+
+| Field      | Type (Zod)                                 | Requirements                                                                                                                                                             | Required |
+| ---------- | ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------- |
+| `name`     | `string`                                   | n/a                                                                                                                                                                      | Yes      |
+| `pronouns` | `string`                                   | n/a                                                                                                                                                                      | Optional |
+| `avatar`   | `string.url()` or `string.startsWith('/')` | Should be either a valid URL or a path starting with `/`. Preferably use [Gravatar](https://en.gravatar.com/site/implement/images/) with the `?size=256` size parameter. | Yes      |
+| `bio`      | `string`                                   | n/a                                                                                                                                                                      | Optional |
+| `mail`     | `string.email()`                           | Must be a valid email address.                                                                                                                                           | Optional |
+| `website`  | `string.url()`                             | Must be a valid URL.                                                                                                                                                     | Optional |
+| `twitter`  | `string.url()`                             | Must be a valid URL.                                                                                                                                                     | Optional |
+| `github`   | `string.url()`                             | Must be a valid URL.                                                                                                                                                     | Optional |
+| `linkedin` | `string.url()`                             | Must be a valid URL.                                                                                                                                                     | Optional |
+| `discord`  | `string.url()`                             | Must be a valid URL.                                                                                                                                                     | Optional |
+
+> [!TIP]
+> You can add as many social media links as you want, as long as you adjust the schema! Make sure you also support the new field in the `src/components/SocialIcons.astro` component.
+
+### Projects
+
+Add projects in `src/content/projects/` as Markdown files:
+
+```yml
+---
+name: 'Project A'
+description: 'This is an example project description! You should replace this with a description of your own project.'
+tags: ['Framework A', 'Library B', 'Tool C', 'Resource D']
+image: '/static/1200x630.png'
+link: 'https://example.com'
+startDate: '2024-01-01'
+endDate: '2024-01-01'
+---
+```
+
+The project schema is defined as follows:
+
+| Field         | Type (Zod)      | Requirements                            | Required |
+| ------------- | --------------- | --------------------------------------- | -------- |
+| `name`        | `string`        | n/a                                     | Yes      |
+| `description` | `string`        | n/a                                     | Yes      |
+| `tags`        | `string[]`      | n/a                                     | Yes      |
+| `image`       | `image()`       | Should be exactly 1200px &times; 630px. | Yes      |
+| `link`        | `string.url()`  | Must be a valid URL.                    | Yes      |
+| `startDate`   | `coerce.date()` | Must be in `YYYY-MM-DD` format.         | Optional |
+| `endDate`     | `coerce.date()` | Must be in `YYYY-MM-DD` format.         | Optional |
+
+## License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+---
+
+### Star history
+
+<a href="https://star-history.com/#jktrn/astro-erudite&Date">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=jktrn/astro-erudite&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=jktrn/astro-erudite&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=jktrn/astro-erudite&type=Date" />
+ </picture>
+</a>
+
+---
+
+Built with &hearts; by [enscribe](https://enscribe.dev)!
+
+[Stargazers]: https://img.shields.io/github/stars/jktrn/astro-erudite?color=fafafa&logo=github&logoColor=fff&style=for-the-badge
+[License]: https://img.shields.io/github/license/jktrn/astro-erudite?color=0a0a0a&logo=github&logoColor=fff&style=for-the-badge

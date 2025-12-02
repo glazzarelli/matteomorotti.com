@@ -1,27 +1,47 @@
 ---
-import Layout from '../layouts/BlogPost.astro';
-import GlowLineSeparator from '@/components/ui/separator/GlowLineSeparator.astro';
-const pageTitle = 'About Me';
-const pageDescription = 'Learn more about my background and approach to software engineering.';
+import Breadcrumbs from '@/components/Breadcrumbs.astro'
+import Link from '@/components/Link.astro'
+import PageHead from '@/components/PageHead.astro'
+import ProjectCard from '@/components/ProjectCard.astro'
+import Layout from '@/layouts/Layout.astro'
+import { getAllProjects } from '@/lib/data-utils'
+
+const projects = await getAllProjects()
 ---
 
-<Layout title={pageTitle} description={pageDescription} pubDate={new Date()} showHeader={false}>
-  <p>
-    Hey! I'm a senior software engineer who loves designing reliable systems and shipping products that feel great to use.
-  </p>
-  <p>
-    I work across the stack with TypeScript, Node.js, React/Next.js, and PostgreSQL. I care deeply about readable code,
-    strong tests, and observability. My approach: ship small, iterate quickly, measure outcomes.
-  </p>
-  <p>
-    Recent highlights include leading a migration from a monolith to well‑scoped services, improving p95 latency,
-    and introducing CI/CD with preview environments and quality gates.
-  </p>
-  <p>
-    Outside of feature work, I enjoy mentoring, documentation, and building design‑system components that make teams faster.
-    Always learning—and always happy to collaborate on meaningful problems.
-  </p>
+<Layout class="max-w-3xl">
+  <PageHead slot="head" title="About" />
+  <Breadcrumbs items={[{ label: 'About', icon: 'lucide:info' }]} />
 
-  <GlowLineSeparator />
+  <section>
+    <div class="min-w-full">
+      <div class="prose mb-8">
+        <p class="mt-0">
+          astro-erudite is an opinionated, unstyled static blogging template
+          that prioritizes simplicity and performance, built with <Link
+            href="https://astro.build"
+            external
+            underline>Astro</Link
+          >, <Link href="https://tailwindcss.com" external underline
+            >Tailwind</Link
+          >, and <Link href="https://ui.shadcn.com" external underline
+            >shadcn/ui</Link
+          >. It provides a clean foundation for your content while being
+          extremely easy to customize.
+        </p>
+        <p>
+          To learn more about the philosophy behind this template, check out the
+          following blog post: <Link
+            href="/blog/the-state-of-static-blogs"
+            underline>The State of Static Blogs in 2024</Link
+          >.
+        </p>
+      </div>
 
+      <h2 class="mb-4 text-2xl font-medium">Example Projects Listing</h2>
+      <div class="flex flex-col gap-4">
+        {projects.map((project) => <ProjectCard project={project} />)}
+      </div>
+    </div>
+  </section>
 </Layout>

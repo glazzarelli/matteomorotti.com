@@ -1,69 +1,85 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/sections/Footer.astro';
-import Header from '../components/sections/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
-import HeroSection from '../components/sections/HeroSection.astro';
-import SkillsSection from '../components/sections/SkillsSection.astro';
-import { skills } from '../data/skills';
-import WorkExperience from '../components/sections/WorkExperience.astro';
-import { work } from '../data/work';
-import Studies from '../components/sections/Studies.astro';
-import { studies } from '../data/studies';
-import Carousel from '../components/ui/carousel/Carousel.astro';
-import { logos } from '../data/logos';
-import ArrowSeparator from '../components/ui/separator/ArrowSeparator.astro'
-import GlowLineSeparator from '../components/ui/separator/GlowLineSeparator.astro'
+import BlogCard from '@/components/BlogCard.astro'
+import Link from '@/components/Link.astro'
+import PageHead from '@/components/PageHead.astro'
+import { buttonVariants } from '@/components/ui/button'
+import { SITE } from '@/consts'
+import Layout from '@/layouts/Layout.astro'
+import { getRecentPosts } from '@/lib/data-utils'
 
-// Logos
-import astroLogo from '../assets/logos/Astro-logo.svg';
-import googleAdsLogo from '../assets/logos/GoogleAds-logo.svg';
-import posthogLogo from '../assets/logos/posthog-logo.svg';
-import notionLogo from '../assets/logos/Notion-logo.svg';
-import figmaLogo from '../assets/logos/Figma-logo.svg';
-
-// skills are imported from src/data/skills
+const blog = await getRecentPosts(SITE.featuredPostCount)
 ---
 
-<!doctype html>
-<html lang="en" data-theme="dark" class="dark">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-    <!-- JSON-LD: Organization -->
-    <script type="application/ld+json" set:html={JSON.stringify({
-      '@context': 'https://schema.org',
-      '@type': 'Organization',
-      name: 'Site Author',
-      url: new URL('/', Astro.site).toString(),
-      logo: new URL('/favicon.svg', Astro.site).toString(),
-      sameAs: [
-        'https://x.com/guihubie',
-        'https://www.linkedin.com/in/guilherme-hubie/',
-      ],
-    })} />
-	</head>
-	<body>
-		<Header />
-		<main>
-      <HeroSection
-        title="Your Headline Goes Here!"
-        subtitle="I build softwares that brings you loyal subscribers."
-        showCTA
-        primaryCTA={{ text: 'View Projects', href: '/portfolio' }}
-        secondaryCTA={{ text: 'Read Blog', href: '/blog' }}
-      />
-     
-
-    <section class="py-6">
-      <ArrowSeparator />
-      <SkillsSection title="Skills & Tools" skills={skills} />   
-      <ArrowSeparator />
-      <WorkExperience title="Work Experience" items={work} />
-      <ArrowSeparator />
-      <Studies title="Studies" items={studies} />
-      <GlowLineSeparator />
-    </section>
-		</main>
-		<Footer />
-	</body>
-</html>
+<Layout class="max-w-3xl">
+  <PageHead slot="head" title="Home" />
+  <section class="rounded-lg border">
+    <div class="flex flex-col space-y-1.5 p-6">
+      <h3 class="text-3xl leading-none font-medium">er·u·dite</h3>
+      <p class="text-muted-foreground text-sm">
+        /ˈer(y)əˌdīt/ &bull; <span class="font-medium">adjective</span>
+      </p>
+    </div>
+    <div class="p-6 pt-0">
+      <p class="text-muted-foreground mb-2 text-sm">
+        astro-erudite is an opinionated, unstyled static blogging template built
+        with <Link
+          href="https://astro.build"
+          class="text-foreground"
+          external
+          underline>Astro</Link
+        >, <Link
+          href="https://tailwindcss.com"
+          class="text-foreground"
+          external
+          underline>Tailwind</Link
+        >, and <Link
+          href="https://ui.shadcn.com"
+          class="text-foreground"
+          external
+          underline>shadcn/ui</Link
+        >. Extraordinarily loosely based on the <Link
+          href="https://astro-micro.vercel.app/"
+          class="text-foreground"
+          external
+          underline>Astro Micro</Link
+        > theme.
+      </p>
+      <p class="text-muted-foreground text-sm">
+        To use this template, check out the <Link
+          href="https://github.com/jktrn/astro-erudite"
+          class="text-foreground"
+          underline
+          external>GitHub</Link
+        > repository. To learn more about why this template exists, read this blog
+        post: <Link
+          href="/blog/the-state-of-static-blogs"
+          class="text-foreground"
+          underline>The State of Static Blogs in 2024</Link
+        >.
+      </p>
+    </div>
+  </section>
+  <section class="flex flex-col gap-y-4">
+    <h2 class="text-2xl font-medium">Latest posts</h2>
+    <ul class="flex flex-col gap-y-4">
+      {
+        blog.map((post) => (
+          <li>
+            <BlogCard entry={post} />
+          </li>
+        ))
+      }
+    </ul>
+    <div class="flex justify-center">
+      <Link
+        href="/blog"
+        class={buttonVariants({ variant: 'ghost' }) + ' group'}
+      >
+        See all posts <span
+          class="ml-1.5 transition-transform group-hover:translate-x-1"
+          >&rarr;</span
+        >
+      </Link>
+    </div>
+  </section>
+</Layout>
